@@ -1,46 +1,19 @@
-import "./home.css"
-import Card from '../../componants/Cards/Card';
-import axios from 'axios';
-import star from "../../images/star.png"
-import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-
-
-function Home() {
-  const [productData,setProductData] = useState([])
-  const [isData, setIsData] = useState(false)
-  // useParams
-  let { productId } = useParams() 
-
-  const getData = async ()=>{
-   const fetchData = await axios.get(`https://fakestoreapi.com/products`)
-   try{
-    setProductData(fetchData.data)
-    console.log(fetchData.data)
-    setIsData(true)
-  }catch(err){
-    console.log(err);
-    setIsData(true)
-   }
-  
-  }
-  useEffect(()=>{
-  getData()
-  },[])
-
+const Home = () => {
   return (
-    <div className='main'>
-    
-      {
-       isData ? productData.map((e,i)=>{
-          const {title, image, description, rating, price,} = e
-          return <Card title={title} image={image} description={description} price={price} rating={rating.rate} key={i} star={star}  />
-        }) : 'no Data found'
-      }
+    <div>
       
+      <h1>
+        This is Home page 
+      </h1>
+      <h3>
+        Goto card section click here <Link to={'/card'} >Cards Data</Link>
+      </h3>
+
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

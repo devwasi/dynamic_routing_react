@@ -8,7 +8,7 @@ const AppRouter = () => {
         <Routes>
           {
             RouteList.map((e,i)=>{
-              return <Route path={e.path} element={e.element}  />
+              return <Route key={i} path={e.path} element={e.element}  />
             })
           }
             
